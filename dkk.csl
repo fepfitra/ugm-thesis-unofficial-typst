@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="id-ID">
+  <info>
+    <title>Harvard (Indonesia - dkk.)</title>
+    <id>http://www.zotero.org/styles/harvard-indonesia-dkk</id>
+    <link href="http://www.zotero.org/styles/harvard-indonesia-dkk" rel="self"/>
+    <link href="http://www.zotero.org/styles/harvard-university-of-limerick" rel="template"/>
+    <author>
+      <name>Gemini</name>
+    </author>
+    <category citation-format="author-date"/>
+    <category field="generic-base"/>
+    <summary>Gaya sitasi Harvard sesuai panduan akademis Indonesia, menggunakan 'dkk.' untuk penulis lebih dari dua. Dibuat berdasarkan panduan yang diberikan.</summary>
+    <updated>2025-06-12T22:43:00+07:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+
+  <locale xml:lang="id-ID">
+    <terms>
+      <term name="et-al">dkk.</term>
+      <term name="and">dan</term>
+      <term name="anonymous">Anonim</term>
+      <term name="editor" form="short">
+        <single>Ed.</single>
+        <multiple>Eds.</multiple>
+      </term>
+      <term name="in">dalam</term>
+      <term name="accessed">diakses</term>
+      <term name="translator" form="short">diterj.</term>
+      <term name="presented at">disajikan di</term>
+    </terms>
+  </locale>
+
+  <macro name="author">
+    <names variable="author">
+      <name name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="always"/>
+      <label form="short" prefix=", "/>
+      <substitute>
+        <names variable="editor"/>
+        <names variable="translator"/>
+        <text term="anonymous"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="author-short">
+    <names variable="author">
+      <name form="short" and="text" delimiter=", "/>
+      <et-al term="et-al"/>
+      <substitute>
+        <names variable="editor"/>
+        <names variable="translator"/>
+        <text term="anonymous"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="year-date">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="access">
+    <choose>
+      <if type="webpage post post-weblog" match="any">
+         <group delimiter=", ">
+            <text variable="URL" font-style="italic"/>
+            <group delimiter=" ">
+              <text term="accessed"/>
+              <date variable="accessed">
+                <date-part name="day" form="numeric-leading-zeros" suffix="-"/>
+                <date-part name="month" form="numeric-leading-zeros" suffix="-"/>
+                <date-part name="year"/>
+              </date>
+            </group>
+         </group>
+      </if>
+      <else>
+        <text variable="URL"/>
+      </else>
+    </choose>
+  </macro>
+  
+  <macro name="publisher">
+    <group delimiter=", ">
+      <text variable="publisher"/>
+      <text variable="publisher-place"/>
+    </group>
+  </macro>
+
+	<macro name="translator">
+		<choose>
+			<if variable="translator">
+				<group prefix="(" suffix=")">
+					<text value="diterjemahkan oleh: "/>
+					<names variable="translator">
+						<name delimiter=", " delimiter-precedes-last="always"/>
+					</names>
+				</group>
+			</if>
+		</choose>
+	</macro>
+  
+  <macro name="title">
+    <choose>
+      <if type="book report thesis patent" match="any">
+        <text variable="title" font-style="italic"/>
+      </if>
+      <else-if type="paper-conference chapter" match="any">
+        <text variable="title" font-style="italic"/>
+      </else-if>
+      <else>
+        <text variable="title"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="container-title">
+     <choose>
+        <if type="article-journal">
+            <text variable="container-title" font-style="italic" form="short"/>
+        </if>
+        <else-if type="chapter paper-conference" match="any">
+            <text variable="container-title" font-style="italic"/>
+        </else-if>
+        <else>
+            <text variable="container-title" font-style="italic"/>
+        </else>
+     </choose>
+  </macro>
+
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" disambiguate-add-names="true" collapse="year">
+    <sort>
+      <key macro="author"/>
+      <key macro="year-date"/>
+    </sort>
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <group delimiter=", ">
+        <text macro="author-short"/>
+        <text macro="year-date"/>
+      </group>
+    </layout>
+  </citation>
+
+  <bibliography hanging-indent="true" entry-spacing="1">
+    <sort>
+      <key macro="author"/>
+      <key variable="issued"/>
+    </sort>
+    <layout>
+      <group delimiter=", ">
+        <text macro="author"/>
+        <text macro="year-date"/>
+        <text macro="title"/>
+      </group>
+      <choose>
+        <if type="book">
+          <group prefix=", " delimiter=", ">
+            <text variable="volume" prefix="Vol. "/>
+            <text variable="edition" form="short" prefix="Edisi "/>
+            <text macro="translator"/>
+            <text macro="publisher"/>
+          </group>
+        </if>
+        <else-if type="chapter paper-conference" match="any">
+          <group prefix=", " delimiter=", ">
+            <text term="in" suffix=" "/>
+            <names variable="editor">
+              <name name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="always"/>
+              <label form="short" prefix=" (" suffix=")"/>
+            </names>
+            <text macro="container-title"/>
+            <text macro="publisher"/>
+            <text variable="page" prefix="hlm. "/>
+          </group>
+        </else-if>
+        <else-if type="article-journal">
+           <group prefix=", " delimiter=", ">
+              <text macro="container-title"/>
+              <text variable="volume"/>
+              <text variable="issue" prefix="No. "/>
+              <text variable="page" prefix="hlm. "/>
+           </group>
+        </else-if>
+        <else-if type="thesis">
+           <group prefix=", " delimiter=", ">
+              <text variable="genre"/>
+              <text variable="publisher"/>
+              <text variable="publisher-place"/>
+           </group>
+        </else-if>
+        <else-if type="report">
+           <group prefix=", " delimiter=", ">
+             <text variable="genre"/>
+             <text variable="number" prefix="No. Proyek "/>
+             <text macro="publisher"/>
+           </group>
+        </else-if>
+         <else-if type="article-newspaper">
+          <group prefix=", " delimiter=", ">
+            <text variable="container-title" font-style="italic"/>
+            <date variable="issued">
+                <date-part name="day" suffix=" "/>
+                <date-part name="month" form="long"/>
+                <date-part name="year" prefix=" "/>
+            </date>
+            <text variable="page" prefix="hlm. "/>
+          </group>
+        </else-if>
+        <else-if type="patent">
+           <group prefix=", " delimiter=", ">
+              <text variable="publisher"/>
+              <text variable="number" prefix="Paten No. "/>
+           </group>
+        </else-if>
+      </choose>
+      <text prefix=", " macro="access"/>
+      <text value="."/>
+    </layout>
+  </bibliography>
+</style>
