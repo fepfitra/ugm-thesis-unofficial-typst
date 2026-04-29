@@ -207,7 +207,7 @@
   )<hinfo-nm>
 ]
 
-Pada @tbl:hinfo-nm #lorem(40)
+Pada @hinfo-nm #lorem(40)
 
 $
   alpha = 1 + cos frac((n_c - 1)pi, 2n_c), wide beta = 1 + cos frac((n_c-3)pi, 2n_c)\
@@ -272,7 +272,7 @@ $
   ) <perbandingan-metode>
 ]
 
-Pada @tbl:perbandingan-metode #lorem(20)
+Pada @perbandingan-metode #lorem(20)
 
 
 #pagebreak()

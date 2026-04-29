@@ -22,7 +22,7 @@
 
 === Akurasi
 
-Akurasi diukur berdasarkan jarak absolut antara nilai _loss_ akhir yang ditemukan algoritma dengan nilai minimum global yang diketahui, yaitu $|f(x) - f^*|$. @tbl:mgh-akurasi menyajikan ringkasan akurasi pada 13 fungsi MGH. Sel berwarna merah menandakan kegagalan konvergensi (mencapai batas 10.000 iterasi).
+Akurasi diukur berdasarkan jarak absolut antara nilai _loss_ akhir yang ditemukan algoritma dengan nilai minimum global yang diketahui, yaitu $|f(x) - f^*|$. @mgh-akurasi menyajikan ringkasan akurasi pada 13 fungsi MGH. Sel berwarna merah menandakan kegagalan konvergensi (mencapai batas 10.000 iterasi).
 
 // bikin tabel tapi ngoding boss wkwkwkwkwk
 

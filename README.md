@@ -28,7 +28,7 @@ Template tugas akhir (skripsi) tidak resmi Universitas Gadjah Mada (UGM) yang di
 - **Penomoran**: Penomoran halaman romawi (i, ii, iii...) untuk bagian awal dan angka (1, 2, 3...) untuk isi
 - **Heading**: Format BAB dengan huruf romawi besar (BAB I, BAB II, ...) dan subbab dengan angka (1.1, 1.2, ...)
 - **Bibliografi**: Mendukung file `.bib` dengan format CSL (tersedia `dkk.csl` untuk format Diktat/Kuliah)
-- **Gambar & Tabel**: Format caption tebal, penomoran otomatis via `i-figured`
+- **Gambar & Tabel**: Format caption tebal, penomoran otomatis per BAB
 - **Pseudocode**: Mendukung penulisan algoritma/pseudocode
 - **Persamaan Matematika**: Format persamaan dengan penomoran otomatis
 - **Blok Kode**: Syntax highlighting dengan line numbers dan border
@@ -42,7 +42,6 @@ Template tugas akhir (skripsi) tidak resmi Universitas Gadjah Mada (UGM) yang di
 Pastikan Anda telah menginstall [Typst](https://github.com/typst/typst) terlebih dahulu. Typst akan otomatis mengunduh package yang dibutuhkan dari registry `@preview`.
 
 Package yang digunakan:
-- `@preview/i-figured:0.2.4` — penomoran gambar, tabel, dan persamaan
 - `@preview/acrostiche:0.5.2` — manajemen singkatan/akronim
 - `@preview/cetz:0.4.0` — pembuatan diagram dan grafik
 - `@preview/cetz-plot:0.1.2` — plotting data
@@ -228,40 +227,30 @@ $ E = m c^2 $ <label-persamaan>
 
 ### 6. Merujuk Gambar, Tabel, dan Persamaan
 
-Template ini menggunakan [`i-figured`](https://typst.app/universe/package/i-figured/) yang secara otomatis memberikan **prefix** pada label sesuai jenis objek. Label ditulis tanpa prefix, tapi dirujuk **dengan prefix**:
-
-| Jenis Objek | Prefix | Contoh Label | Contoh Referensi |
-|-------------|--------|--------------|------------------|
-| Gambar | `fig:` | `<arsitektur-mlp>` | `@fig:arsitektur-mlp` |
-| Tabel | `tbl:` | `<skenario-evaluasi>` | `@tbl:skenario-evaluasi` |
-| Persamaan | `eqt:` | `<energi>` | `@eqt:energi` |
-| Kode / Source Code | `lst:` | `<trait_problem>` | `@lst:trait_problem` |
-| Pseudocode | `pseudocode:` | `<reduction>` | `@pseudocode:reduction` |
-
-Contoh penggunaan di dalam teks:
+Rujuk objek secara langsung menggunakan nama label yang telah ditentukan. Typst akan otomatis menampilkan jenis objek beserta nomornya (misalnya *Gambar 3.1*, *Tabel 2.4*, *Persamaan 4.2*).
 
 ```typst
 // Merujuk gambar
-Arsitektur jaringan ditunjukkan pada @fig:arsitektur-mlp.
+Arsitektur jaringan ditunjukkan pada @arsitektur-mlp.
 
 // Merujuk tabel
-Ringkasan skenario disajikan pada @tbl:skenario-evaluasi.
+Ringkasan skenario disajikan pada @skenario-evaluasi.
 
 // Merujuk persamaan
-Nilai energi dihitung menggunakan @eqt:energi.
+Nilai energi dihitung menggunakan @energi.
 
 // Merujuk pseudocode
-Algoritma dijelaskan pada @pseudocode:reduction.
+Algoritma dijelaskan pada @reduction.
 
 // Merujuk kode program
-Implementasi ditunjukkan pada @lst:trait_problem.
+Implementasi ditunjukkan pada @trait_problem.
 ```
 
-Typst akan otomatis menuliskan nomor objek yang dirujuk (misalnya *Gambar 3.1*, *Tabel 2.4*, *Persamaan 4.2*). Untuk menghindari penomoran pada kalimat tertentu, bungkus dengan tanda kurung siku:
+Untuk menghindari penomoran pada kalimat tertentu, bungkus dengan tanda kurung siku:
 
 ```typst
 // Menampilkan hanya nomor, tanpa kata "Gambar"
-Perbandingan pada [@fig:arsitektur-mlp] menunjukkan ...
+Perbandingan pada [@arsitektur-mlp] menunjukkan ...
 ```
 
 ### 7. Compile Dokumen

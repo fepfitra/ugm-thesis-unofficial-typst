@@ -33,7 +33,7 @@
 
 3. *Evaluasi*: #lorem(20)
 
-  Ringkasan kedua skenario disajikan pada @tbl:skenario-evaluasi.
+  Ringkasan kedua skenario disajikan pada @skenario-evaluasi.
 
   #figure(
     text(size: 9pt, table(
@@ -51,7 +51,7 @@
     caption: [Ringkasan skenario evaluasi],
   ) <skenario-evaluasi>
 
-Fungsi Reduction (@pseudocode:reduction) merupakan operasi _shrink_ yang menyusutkan seluruh simplex ke arah titik terbaik $x_1$. Operasi ini dipanggil sebagai _fallback_ terakhir ketika kontraksi gagal memperbaiki simplex, di mana seluruh verteks kecuali $x_1$ dipindahkan mendekati $x_1$ dengan faktor $delta$.
+Fungsi Reduction (@reduction) merupakan operasi _shrink_ yang menyusutkan seluruh simplex ke arah titik terbaik $x_1$. Operasi ini dipanggil sebagai _fallback_ terakhir ketika kontraksi gagal memperbaiki simplex, di mana seluruh verteks kecuali $x_1$ dipindahkan mendekati $x_1$ dengan faktor $delta$.
 
 #figure(
   kind: "pseudocode",
@@ -73,7 +73,7 @@ Fungsi Reduction (@pseudocode:reduction) merupakan operasi _shrink_ yang menyusu
 )<reduction>
 
 === Langkah inisialisasi
-Pada langkah inisialisasi, simpleks awal dibentuk dengan memilih $n+1$ titik awal $x_1, x_2, ..., x_(n+1)$ yang tersebar di ruang solusi. Sebagai contoh, tiga titik dibuat di ruang dua dimensi membentuk simpleks segitiga seperti pada gambar @fig:initiation. Titik-titik ini dapat dipilih secara acak atau berdasarkan aturan tertentu. Semua titik dievaluasi dengan fungsi objektif $f$ untuk mendapatkan nilai $f(x_1), f(x_2), ..., f(x_(n+1))$. Titik-titik ini digunakan sebagai titik awal untuk iterasi algoritma.
+Pada langkah inisialisasi, simpleks awal dibentuk dengan memilih $n+1$ titik awal $x_1, x_2, ..., x_(n+1)$ yang tersebar di ruang solusi. Sebagai contoh, tiga titik dibuat di ruang dua dimensi membentuk simpleks segitiga seperti pada gambar @initiation. Titik-titik ini dapat dipilih secara acak atau berdasarkan aturan tertentu. Semua titik dievaluasi dengan fungsi objektif $f$ untuk mendapatkan nilai $f(x_1), f(x_2), ..., f(x_(n+1))$. Titik-titik ini digunakan sebagai titik awal untuk iterasi algoritma.
 
 #align(center)[
   #figure(
@@ -140,7 +140,7 @@ $
 Selain fungsi matematika, algoritma diuji untuk mengoptimasi bobot #acr("JST") pada masalah regresi.
 
 === Arsitektur jaringan
-Arsitektur jaringan yang digunakan dalam pengujian ditunjukkan pada @fig:arsitektur-mlp, dengan rincian sebagai berikut:
+Arsitektur jaringan yang digunakan dalam pengujian ditunjukkan pada @arsitektur-mlp, dengan rincian sebagai berikut:
 - *Input Layer*: 8 neuron (sesuai fitur California Housing: Longitude, Latitude, dll).
 - *Hidden Layer*: 16 neuron (Aktivasi Sigmoid).
 - *Output Layer*: 1 neuron (Prediksi harga rumah).

@@ -1,4 +1,3 @@
-#import "@preview/i-figured:0.2.4"
 #import "@preview/acrostiche:0.5.2": *
 
 #let to-string(it) = {
@@ -209,26 +208,23 @@
   #pagebreak()
 
   = DAFTAR TABEL
-  #i-figured.outline(target-kind: table, title: none)
-  // #outline(target: figure.where(kind: table), title: none)
+  #outline(target: figure.where(kind: table), title: none)
   #pagebreak()
 
   = DAFTAR GAMBAR
-  #i-figured.outline(target-kind: image, title: none)
-  // #outline(target: figure.where(kind: image), title: none)
+  #outline(target: figure.where(kind: image), title: none)
   #pagebreak()
 
   = DAFTAR PERSAMAAN
-  // #i-figured.outline(target-kind: math.equation, title: none)
   #outline(target: math.equation, title: none)
   #pagebreak()
 
   = DAFTAR PSEUDOCODE
-  #i-figured.outline(target-kind: "pseudocode", title: none)
+  #outline(target: figure.where(kind: "pseudocode"), title: none)
   #pagebreak()
 
   = DAFTAR KODE
-  #i-figured.outline(target-kind: raw, title: none)
+  #outline(target: figure.where(kind: raw), title: none)
   #pagebreak()
 
   // = DAFTAR LAMBANG
@@ -370,12 +366,31 @@
   show heading.where(level: 2): set text(weight: "bold", size: 12pt)
   show figure.where(kind: image): set figure(supplement: "Gambar")
   show figure.where(kind: table): set figure(supplement: "Tabel")
-  show heading: i-figured.reset-counters.with(extra-kinds: ("pseudocode",))
-  show figure: i-figured.show-figure.with(extra-prefixes: ("pseudocode": "pseudocode:"))
-  show math.equation: i-figured.show-equation
   show figure.where(kind: table): set figure.caption(position: top)
   show figure.where(kind: raw): set figure(supplement: "Kode")
   show figure.where(kind: "pseudocode"): set figure(supplement: [_Pseudocode_])
+
+  // Reset figure and equation counters at each new chapter
+  show heading: it => {
+    if it.level <= 1 {
+      let kinds = query(figure).map(fig => fig.kind).dedup()
+      for kind in kinds { counter(figure.where(kind: kind)).update(0) }
+      counter(math.equation).update(0)
+    }
+    it
+  }
+
+  // Chapter-based numbering for figures
+  set figure(numbering: (..nums) => {
+    let h = counter(heading).get().first()
+    numbering("1.1", h, ..nums)
+  })
+
+  // Chapter-based numbering for equations
+  set math.equation(numbering: (..nums) => {
+    let h = counter(heading).get().first()
+    numbering("(1.1)", h, ..nums)
+  })
 
   show raw.where(block: true): it => {
     show raw.line: line => {

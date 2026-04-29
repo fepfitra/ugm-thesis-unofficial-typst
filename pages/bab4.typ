@@ -25,7 +25,7 @@
 
 === Abstraksi masalah (`Problem` _trait_)
 
-Modul `problem` mendefinisikan Trait `Problem` yang harus dipenuhi oleh setiap fungsi objektif. Seluruh fungsi uji MGH dari pustaka `mgh` serta model Jaringan Saraf Tiruan diimplementasikan sebagai tipe data yang memenuhi struktur ini, seperti yang ditunjukkan pada @lst:trait_problem. Modul ini berperan sebagai lapisan abstraksi agar algoritma optimasi dapat bekerja pada berbagai jenis masalah tanpa terikat pada detail implementasi fungsi objektif tertentu.
+Modul `problem` mendefinisikan Trait `Problem` yang harus dipenuhi oleh setiap fungsi objektif. Seluruh fungsi uji MGH dari pustaka `mgh` serta model Jaringan Saraf Tiruan diimplementasikan sebagai tipe data yang memenuhi struktur ini, seperti yang ditunjukkan pada @trait_problem. Modul ini berperan sebagai lapisan abstraksi agar algoritma optimasi dapat bekerja pada berbagai jenis masalah tanpa terikat pada detail implementasi fungsi objektif tertentu.
 
 #figure(
   caption: "Definisi trait Problem untuk injeksi masalah",
